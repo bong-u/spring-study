@@ -1,6 +1,7 @@
 # VSCode
 .settings/
 .classpath
+.project
 
 # Maven
 target/
