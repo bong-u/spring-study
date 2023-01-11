@@ -85,20 +85,10 @@ public class MemberDao {
 	}
 	
 	public void update(Member member) {
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con)
-			throws SQLException {
-				PreparedStatement pstmt = con.prepareStatement(
-					"insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE) values (?, ?, ?, ?)");
-				pstmt.setString(1, member.getEmail());
-				pstmt.setString(2, member.getPassword());
-				pstmt.setString(3, member.getName());
-				pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
-
-				return pstmt;
-			}
-		});
+		jdbcTemplate.update(
+			"update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
+			member.getName(), member.getPassword(), member.getEmail()
+		);
 	}
 
 	public int count() {
