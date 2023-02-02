@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 @Configuration
 @EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {
@@ -35,4 +36,10 @@ public class MvcConfig implements WebMvcConfigurer {
         ms.setDefaultEncoding("UTF-8");
         return ms;
     }
+
+    // Global scoped validator
+    // @Override
+    // public Validator getValidator() {
+    //     return new RegisterRequestValidator();
+    // }
 }

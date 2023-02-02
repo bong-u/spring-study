@@ -1,9 +1,21 @@
 package spring;
 
+
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class RegisterRequest {
+	@NotBlank
+	@Email
 	private String email;
+	@Size(min = 6)
 	private String password;
-	private String confirmPassowrd;
+	@NotEmpty
+	private String confirmPassword;
+	@NotEmpty
 	private String name;
 	
 	public String getEmail() {
@@ -23,11 +35,11 @@ public class RegisterRequest {
 	}
 	
 	public String getConfirmPassword() {
-		return confirmPassowrd;
+		return confirmPassword;
 	}
 	
 	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassowrd = confirmPassword;
+		this.confirmPassword = confirmPassword;
 	}
 	
 	public String getName() {
@@ -39,6 +51,6 @@ public class RegisterRequest {
 	}
 	
 	public boolean isPasswordEqualToConfirmPassword() {
-		return password.equals(confirmPassowrd);
+		return password.equals(confirmPassword);
 	}
 }

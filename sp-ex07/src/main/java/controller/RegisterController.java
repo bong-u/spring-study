@@ -1,5 +1,7 @@
 package controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -42,16 +44,23 @@ public class RegisterController {
     }
 
     @PostMapping("/register/step3")
-    public String handleStep3(RegisterRequest regReq, Errors errors) {
-        new RegisterRequestValidator().validate(regReq, errors);
+    public String handleStep3(@Valid RegisterRequest regReq, Errors errors) {
         if (errors.hasErrors())
             return "register/step2";
+
         try {
             memberRegisterService.regist(regReq);
             return "register/step3";
         }
         catch (DuplicateMemberException ex) {
+            errors.rejectValue("email", "duplicate");
             return "register/step2";
         }
     }
+
+    // Controller scoped validator
+    // @InitBinder
+    // protected void initBinder(WebDataBinder binder) {
+    //     binder.setValidator(new RegisterRequestValidator())        ;
+    // }
 }
