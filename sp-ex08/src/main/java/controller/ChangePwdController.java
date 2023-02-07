@@ -24,7 +24,10 @@ public class ChangePwdController {
 
     @GetMapping
     public String form(@ModelAttribute("command") ChangePwdCommand pwdCmd) {
-            return "edit/changePwdForm";
+        // AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+        // if (authInfo == null)
+        //     return "redirect:/login";
+        return "edit/changePwdForm";
     }
 
     @PostMapping
@@ -35,10 +38,10 @@ public class ChangePwdController {
         }
         AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
         try {
-            changePasswordService.changePassword(authInfo.getEmail(), pwdCmd.getCurrentPassword(), pwdCmd.getNewPassword());
+            changePasswordService.changePassword(authInfo.getEmail(), pwdCmd.getCurrentPassword(),
+                    pwdCmd.getNewPassword());
             return "edit/changedPwd";
-        }
-        catch (WrongIdPasswordException e) {
+        } catch (WrongIdPasswordException e) {
             errors.rejectValue("currentPassword", "notMatching");
             return "edit/changePwdForm";
         }

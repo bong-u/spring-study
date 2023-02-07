@@ -9,7 +9,6 @@
     <body>
         <form:form modelAttribute="loginCommand">
             <form:errors/>
-
             <p>
                 <label>
                     <spring:message code="email" />:<br>
@@ -25,7 +24,11 @@
                     <form:errors path="password" />
                 </label>
             </p>
-
+            <p>
+                <label><spring:message code="rememberEmail" />:
+                <form:checkbox path="rememberEmail" />
+                </label>
+            </p>
             <input type="submit" value="<spring:message code="login.btn" />">
         </form:form>
     </body>
