@@ -47,7 +47,9 @@ public class LoginController {
 
             Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getEmail());
             rememberCookie.setPath("/");
-            if (loginCommand.isRememberEamil()) {
+            System.out.println(loginCommand.getEmail());
+            System.out.println(loginCommand.isRememberEmail());
+            if (loginCommand.isRememberEmail()) {
                 rememberCookie.setMaxAge(60 * 60 * 24 * 30);
             }
             else {
@@ -58,7 +60,7 @@ public class LoginController {
             return "login/loginSuccess";
         }
         catch (WrongIdPasswordException e) {
-            errors.reject("idPasswordNotMatchㅁing");
+            errors.reject("idPasswordNotMatching");
             return "login/loginForm";            
         }
     }

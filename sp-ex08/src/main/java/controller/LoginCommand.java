@@ -21,7 +21,7 @@ public class LoginCommand {
         this.password = password;
     }
 
-    public boolean isRememberEamil() {
+    public boolean isRememberEmail() {
         return rememberEmail;
     }
 
